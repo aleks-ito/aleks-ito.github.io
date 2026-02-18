@@ -1,8 +1,8 @@
 "use client"
 
 export default function Contact() {
-  const email = "yourname@gmail.com"
-  const linkedinUrl = "https://linkedin.com/in/yourprofile"
+  const email = "dzisevaleksandar@gmail.com"
+  const linkedinUrl = "https://www.linkedin.com/in/aleksandar-ert2324242/"
 
   return (
     <section id="contact" className="relative py-24 sm:py-32 bg-slate-900/30">

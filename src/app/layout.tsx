@@ -16,14 +16,15 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "[Your Name] — Shopify Theme & App Developer | Agencies & Stores",
+  title: "Aleks Ito — Shopify Developer for Agencies & Ecommerce Brands",
   description:
-    "Personal Shopify developer for agencies and ecommerce brands. Custom theme development, app development, and performance optimization. US-based, remote worldwide.",
+    "Shopify theme & app developer for agencies and ecommerce brands. Custom themes, apps, speed, CRO, SEO. White-label for agencies; direct partner for brands. Japan-based, remote worldwide.",
   keywords: [
     "Shopify developer",
     "Shopify theme development",
     "Shopify app development",
     "Shopify speed optimization",
+    "Shopify CRO",
     "ecommerce developer",
     "white-label Shopify",
     "Cursor",
@@ -31,9 +32,9 @@ export const metadata: Metadata = {
     "AI automation",
   ],
   openGraph: {
-    title: "[Your Name] — Shopify Theme & App Developer",
+    title: "Aleks Ito — Shopify Developer for Agencies & Ecommerce Brands",
     description:
-      "I help Shopify agencies and ecommerce brands build fast, conversion-focused stores with custom theme development, app development, and performance optimization.",
+      "I help ecommerce brands and Shopify agencies build fast, conversion-focused stores — custom themes, apps, speed, CRO, and SEO.",
     type: "website",
   },
   robots: "index, follow",

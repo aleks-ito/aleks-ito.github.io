@@ -5,7 +5,7 @@ const points = [
   "Fast turnaround — I respect deadlines and communicate early if scope or timing shifts",
   "Clear communication and progress updates — async-friendly (Slack, email), no radio silence",
   "Strong attention to performance and UX — Core Web Vitals and conversion best practices built in",
-  "Comfortable working with agency workflows — Slack, Jira, GitHub, and your existing tools",
+  "Comfortable with agency workflows and your tools — Slack, Jira, GitHub, and your existing stack",
   "Reliable long-term support mindset — I'm in it for lasting partnerships, not one-off handoffs",
   "AI for automation — I use Cursor, Claude, and AI-assisted workflows to automate repetitive tasks and ship faster without sacrificing quality",
 ]

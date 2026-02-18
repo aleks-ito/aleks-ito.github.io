@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="border-t border-slate-800 bg-slate-950 py-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 text-sm">US-based · Remote worldwide</p>
+          <p className="text-slate-500 text-sm">Japan-based · Remote worldwide</p>
           <nav className="flex items-center gap-6">
             <Link
               href="#hero"
@@ -24,7 +24,7 @@ export default function Footer() {
           </nav>
         </div>
         <p className="mt-6 text-center text-slate-600 text-xs">
-          © {new Date().getFullYear()} [Your Name]. All rights reserved.
+          © {new Date().getFullYear()} Aleks Ito. All rights reserved.
         </p>
       </div>
     </footer>

@@ -1,6 +1,9 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
+import photo from "../assets/media/profile-1.png"
+
 
 const bullets = [
   "Shopify Theme Development (Liquid / Shopify 2.0)",
@@ -25,25 +28,20 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-6xl w-full">
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16">
-          {/* Left: profile photo placeholder */}
+          {/* Left: portrait photo — 400px wide on desktop, height from aspect ratio */}
           <div
-            className="shrink-0 w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-2xl overflow-hidden border-2 border-slate-700/50 bg-slate-800/80 shadow-2xl animate-fade-in"
+            className="shrink-0 w-48 sm:w-56 lg:w-[400px] h-auto rounded-2xl overflow-hidden border-2 border-slate-700/50 bg-slate-800/80 shadow-2xl animate-fade-in"
             style={{ animationDelay: "0.1s" }}
           >
-            {/* Placeholder: replace src with your photo and add width/height */}
-            <div className="w-full h-full bg-slate-700/50 flex items-center justify-center text-slate-500 text-sm text-center px-2">
-              Your photo
-            </div>
-            {/* When you have a photo, use:
             <Image
-              src="/your-photo.jpg"
-              alt="[Your Name]"
-              width={256}
-              height={256}
-              className="w-full h-full object-cover"
+              src={photo}
+              alt="Aleks Ito"
+              width={400}
+              height={Math.round(400 * (photo.height / photo.width))}
+              className="w-full h-auto object-contain"
+              sizes="(max-width: 640px) 192px, (max-width: 1024px) 224px, 400px"
               priority
             />
-            */}
           </div>
 
           {/* Right: intro text */}
@@ -52,15 +50,16 @@ export default function Hero() {
               className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl animate-fade-in-up"
               style={{ animationDelay: "0.2s" }}
             >
-              Hi, I&apos;m [Your Name] — Shopify Theme & App Developer
+              Hi, I&apos;m Aleks Ito
             </h1>
             <p
               className="mt-5 text-lg text-slate-400 sm:text-xl max-w-2xl mx-auto lg:mx-0 animate-fade-in-up"
               style={{ animationDelay: "0.3s" }}
             >
-              I help Shopify agencies and ecommerce brands build fast,
-              conversion-focused Shopify stores with custom theme development,
-              Shopify app development, and performance optimization.
+              I help ecommerce brands and Shopify agencies build fast,
+              conversion-focused stores — custom themes, apps, speed, CRO,
+              and SEO. For brands: more revenue. For agencies: reliable
+              delivery and clean code.
             </p>
 
             <ul

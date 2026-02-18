@@ -8,7 +8,7 @@ const navLinks = [
   { href: "#services", label: "Services" },
   { href: "#work-style", label: "Work Style" },
   { href: "#work", label: "Work" },
-  { href: "#agencies", label: "Agencies" },
+  { href: "#working-with-me", label: "Working With Me" },
   { href: "#tech-stack", label: "Tech Stack" },
   { href: "#testimonials", label: "Testimonials" },
   { href: "#contact", label: "Contact" },
@@ -37,7 +37,7 @@ export default function Navbar() {
           href="#hero"
           className="text-lg font-semibold text-white hover:text-primary-400 transition-colors"
         >
-          [Your Name]
+          Aleks Ito
         </Link>
 
         {/* Desktop nav */}

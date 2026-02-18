@@ -1,72 +1,10 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { createPortal } from "react-dom"
-
-const caseStudies = [
-  {
-    id: "speed-optimization",
-    title: "Shopify Speed Optimization",
-    problem:
-      "Agency client's store had poor mobile performance (PageSpeed 35) and high bounce rate, hurting conversions.",
-    solution:
-      "Full audit, theme cleanup, lazy loading, critical CSS, image optimization, and hosting/config tweaks. Delivered in staging for QA before go-live.",
-    results:
-      "Mobile PageSpeed 35 → 88. Desktop 72 → 95. Bounce rate down ~15% in the first month.",
-    tech: "Liquid, Shopify theme, Core Web Vitals, Lighthouse",
-  },
-  {
-    id: "product-page-sections",
-    title: "Custom Shopify Product Page + Sections",
-    problem:
-      "Brand needed unique product page layouts and modular sections for campaigns without locking into a single theme.",
-    solution:
-      "Built custom sections (hero, feature grid, testimonials, CTA, countdown) with JSON templates. All editable in the theme editor for non-devs.",
-    results:
-      "Faster campaign launches; client reported higher conversion on new landing and product pages.",
-    tech: "Liquid, Shopify 2.0, JSON templates, CSS/JS",
-  },
-  {
-    id: "api-integration",
-    title: "Shopify App / API Integration Automation",
-    problem:
-      "Agency's internal ops required manual syncing between Shopify and their ERP, causing delays and errors.",
-    solution:
-      "Private app with Admin API: order and inventory sync, status updates, and webhooks. Documented for their team to maintain.",
-    results:
-      "Manual data entry largely removed; fewer support tickets from the fulfillment team.",
-    tech: "Shopify Admin API, Node.js, webhooks",
-  },
-  {
-    id: "bug-fix-cleanup",
-    title: "Bug Fix + Theme Cleanup for Agency Client",
-    problem:
-      "Legacy theme had checkout and cart bugs, plus a lot of unused code. Client needed stability and a clear handoff.",
-    solution:
-      "Fixed critical bugs, removed dead code, refactored key snippets. Wrote a short handoff doc for future developers.",
-    results:
-      "Stable production; client and agency could plan the next phase with confidence.",
-    tech: "Liquid, JavaScript, Shopify theme",
-  },
-]
-
-type CaseStudy = (typeof caseStudies)[number]
+import Link from "next/link"
+import Image from "next/image"
+import { getVisibleCaseStudies } from "@/data/caseStudies"
+import { caseStudyAssetImages } from "@/assets/casestudies"
 
 export default function CaseStudies() {
-  const [selectedStudy, setSelectedStudy] = useState<CaseStudy | null>(null)
-
-  useEffect(() => {
-    if (!selectedStudy) return
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedStudy(null)
-    }
-    document.addEventListener("keydown", handleEscape)
-    document.body.style.overflow = "hidden"
-    return () => {
-      document.removeEventListener("keydown", handleEscape)
-      document.body.style.overflow = ""
-    }
-  }, [selectedStudy])
+  const studies = getVisibleCaseStudies()
 
   return (
     <section id="work" className="relative py-24 sm:py-32 bg-slate-900/30">
@@ -76,18 +14,21 @@ export default function CaseStudies() {
             Selected Work
           </h2>
           <p className="mt-4 text-lg text-slate-400">
-            A few recent projects — theme work, apps, speed, and support.
+            I help Shopify brands increase conversion rate and revenue through
+            high-performance store optimization — including CRO (conversion rate
+            optimization), SEO, speed, and tailored builds. Below are a few
+            recent projects.
           </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2">
-          {caseStudies.map((study) => (
+          {studies.map((study) => (
             <article
               key={study.id}
-              className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6 sm:p-8 transition-all hover:border-slate-700"
+              className="rounded-2xl border border-slate-800 bg-slate-950/50 p-6 sm:p-8 transition-all hover:border-slate-700 flex flex-col"
             >
               <h3 className="text-xl font-semibold text-white">{study.title}</h3>
-              <div className="mt-4 space-y-3 text-sm text-slate-400">
+              <div className="mt-4 space-y-3 text-sm text-slate-400 flex-1">
                 <p>
                   <span className="font-medium text-slate-300">Problem: </span>
                   {study.problem}
@@ -105,89 +46,43 @@ export default function CaseStudies() {
                   {study.tech}
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => setSelectedStudy(study)}
-                className="mt-6 text-sm font-medium text-primary-400 hover:text-primary-300 transition-colors"
+              {(() => {
+                const assetImgs = caseStudyAssetImages[study.id]
+                const thumbnails =
+                  (assetImgs?.length ? assetImgs : study.screenshots ?? []) as (
+                    | string
+                    | (typeof assetImgs)[number]
+                  )[]
+                if (thumbnails.length === 0) return null
+                return (
+                  <div className="mt-4 flex gap-1.5 flex-wrap">
+                    {thumbnails.slice(0, 4).map((src, i) => (
+                      <div
+                        key={i}
+                        className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden border border-slate-700/50 bg-slate-800/50 shrink-0"
+                      >
+                        <Image
+                          src={src}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="64px"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )
+              })()}
+              <Link
+                href={`/work/${study.id}`}
+                className="mt-6 inline-block text-sm font-medium text-primary-400 hover:text-primary-300 transition-colors"
               >
-                View Details →
-              </button>
+                View case study →
+              </Link>
             </article>
           ))}
         </div>
       </div>
-
-      {/* Modal — portaled to body so position is always relative to viewport */}
-      {selectedStudy &&
-        typeof document !== "undefined" &&
-        createPortal(
-          <div
-            className="fixed inset-0 z-50 flex min-h-screen items-center justify-center p-4 bg-slate-950/90 backdrop-blur-sm"
-            onClick={() => setSelectedStudy(null)}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-title"
-          >
-            <div
-              className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl border border-slate-700 bg-slate-900 p-6 sm:p-8 shadow-xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3
-                id="modal-title"
-                className="text-xl font-semibold text-white pr-8"
-              >
-                {selectedStudy.title}
-              </h3>
-              <div className="mt-4 space-y-4 text-slate-400">
-                <div>
-                  <span className="block text-sm font-medium text-slate-300 mb-1">
-                    Problem
-                  </span>
-                  <p>{selectedStudy.problem}</p>
-                </div>
-                <div>
-                  <span className="block text-sm font-medium text-slate-300 mb-1">
-                    Solution
-                  </span>
-                  <p>{selectedStudy.solution}</p>
-                </div>
-                <div>
-                  <span className="block text-sm font-medium text-slate-300 mb-1">
-                    Results
-                  </span>
-                  <p>{selectedStudy.results}</p>
-                </div>
-                <div>
-                  <span className="block text-sm font-medium text-slate-300 mb-1">
-                    Tech stack
-                  </span>
-                  <p>{selectedStudy.tech}</p>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedStudy(null)}
-                className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
-                aria-label="Close"
-              >
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>,
-          document.body
-        )}
     </section>
   )
 }
