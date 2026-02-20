@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Aleks Ito — Shopify Developer for Agencies & Ecommerce Brands",
   description:
-    "Shopify theme & app developer for agencies and ecommerce brands. Custom themes, apps, speed, CRO, SEO. White-label for agencies; direct partner for brands. Japan-based, remote worldwide.",
+    "Shopify theme & app developer for agencies and ecommerce brands. Custom themes, apps, speed, CRO, SEO. White-label for agencies; direct partner for brands. remote worldwide.",
   keywords: [
     "Shopify developer",
     "Shopify theme development",

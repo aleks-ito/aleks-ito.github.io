@@ -10,7 +10,7 @@ export default function AboutMe() {
         <div className="mt-6 space-y-4 text-lg text-slate-400 leading-relaxed">
           <p>
             Hi, I&apos;m Aleks Ito, a Shopify theme and app developer based
-            in Japan.
+            in Macedonia.
           </p>
           <p>
             I work with <strong className="text-slate-300">Shopify agencies and ecommerce brands</strong> to build high-performance storefronts, custom features, and apps that drive growth. My expertise is in theme development (Liquid, Shopify 2.0), app development (Admin API, Storefront API), speed and Core Web Vitals, CRO, and SEO — all with clean code and conversion-focused UX. For agencies I provide white-label support; for brands I work as your direct development partner.
